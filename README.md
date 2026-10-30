@@ -6,6 +6,8 @@ Anneru Global Energy Hackathon 2026 · track: Digital Solutions, Apps & AI/ML To
 
 > Design a scalable, low-maintenance energy system that guarantees uninterrupted 24-hour power for Nigerian hospitals experiencing 8–20 hours of daily grid outages, ensuring critical medical equipment, refrigeration, lighting, and life-support systems never fail due to electricity unavailability.
 
+![The plan for the sample hospital: tiers 1-2 stay on through a 14 h outage](docs/plan.png)
+
 Hospital Uptime turns that problem into a plan a hospital administrator can take to an installer and a lender:
 
 1. **List the equipment** and put each item in a tier: 1 life-critical (oxygen, vaccine fridges, ICU, theatre), 2 essential (lighting, lab, water, records), 3 comfort (fans, AC).
