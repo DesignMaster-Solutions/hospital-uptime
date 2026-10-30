@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hospital Uptime · keep critical care powered through grid outages</title>
+<meta name="description" content="Size a solar + battery + backup generator system that keeps a hospital's life-critical loads on through 8-20 hours of daily grid outages, with an hour-by-hour dispatch and a financing plan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2314213d'/><path d='M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z' fill='%23f2a900'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">Anneru Global Energy Hackathon 2026 · Availability</p>
+    <h1>Hospital Uptime</h1>
+    <p class="lede">A hospital with 8 to 20 hours of grid outage a day should never lose an oxygen concentrator or a vaccine fridge. List the equipment, set the outage pattern, and get a solar + battery + backup generator plan, how it runs hour by hour, and what it costs per month against diesel.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="head">
+      <h2>1. Equipment</h2>
+      <span class="hint">Tier 1 never goes dark. Tier 3 is shed first and never gets diesel.</span>
+    </div>
+    <div class="scroll">
+      <table id="loads">
+        <thead><tr><th>Equipment</th><th>Watts</th><th>Hours/day</th><th>Tier</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="row-actions">
+      <button type="button" id="add">Add equipment</button>
+      <button type="button" class="link" id="reset">Load sample hospital</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Grid and site</h2>
+    <div class="grid">
+      <label>Outage hours per day <input type="number" id="outageHours" min="0" max="24" step="1"></label>
+      <label>Outage starts at (hour) <input type="number" id="outageStart" min="0" max="23" step="1"></label>
+      <label>Peak sun hours <input type="number" id="peakSunHours" min="2" max="7.5" step="0.1"></label>
+      <label>Diesel price per litre <input type="number" id="dieselPrice" min="0" step="0.05"></label>
+      <label>Finance term (years) <input type="number" id="financeYears" min="1" max="15" step="1"></label>
+      <label>Interest rate (%/yr) <input type="number" id="financeRatePct" min="0" max="60" step="0.5"></label>
+    </div>
+    <details>
+      <summary>Unit costs and equipment assumptions</summary>
+      <div class="grid">
+        <label>PV cost per kWp <input type="number" id="pvCostPerKw" min="0" step="10"></label>
+        <label>Battery cost per kWh <input type="number" id="batteryCostPerKwh" min="0" step="10"></label>
+        <label>Generator cost per kW <input type="number" id="generatorCostPerKw" min="0" step="10"></label>
+        <label>Inverter cost per kW <input type="number" id="inverterCostPerKw" min="0" step="10"></label>
+        <label>Battery depth of discharge <input type="number" id="depthOfDischarge" min="0.3" max="1" step="0.05"></label>
+        <label>Genset litres per kWh <input type="number" id="litresPerKwh" min="0.15" max="0.8" step="0.01"></label>
+      </div>
+      <p class="hint">Defaults are planning assumptions, not quotes. Replace them with local supplier prices.</p>
+    </details>
+  </section>
+
+  <section class="card">
+    <div class="head">
+      <h2>3. System</h2>
+      <button type="button" class="link" id="autosize">Re-size automatically</button>
+    </div>
+    <div class="grid three">
+      <label>Solar PV (kWp) <input type="number" id="pvKw" min="0" step="0.5"></label>
+      <label>Battery (kWh) <input type="number" id="batteryKwh" min="0" step="1"></label>
+      <label>Backup generator (kW) <input type="number" id="generatorKw" min="0" step="1"></label>
+    </div>
+  </section>
+
+  <section class="card" id="plan">
+    <h2>4. The plan</h2>
+    <div class="verdict" id="verdict"></div>
+    <div class="kpis" id="kpis"></div>
+    <h3>A typical day, hour by hour</h3>
+    <div class="legend">
+      <span><i class="k grid"></i>Grid</span><span><i class="k solar"></i>Solar</span>
+      <span><i class="k batt"></i>Battery</span><span><i class="k gen"></i>Generator</span>
+      <span><i class="k shed"></i>Shed (not served)</span><span><i class="k soc"></i>Battery charge</span>
+    </div>
+    <div id="chart" role="img" aria-label="Hourly energy sources over one day"></div>
+    <h3>Load-shedding order during an outage</h3>
+    <ol class="order" id="order"></ol>
+    <div class="row-actions">
+      <button type="button" id="print">Print this plan</button>
+    </div>
+  </section>
+
+  <section class="card notes">
+    <h2>How it works</h2>
+    <p>Each equipment line becomes an average power by tier. The outage is one continuous block per day (the worst case for storage). Solar follows a half-sine from 06:00 to 18:00 that sums to the peak sun hours. During grid hours the grid carries the hospital and recharges the battery. During the outage, each hour serves tier 1, then tier 2, then tier 3 from solar, then battery, and the generator only covers tiers 1 and 2. The simulation runs three days and reports the third, once the battery state has settled.</p>
+    <p>Auto-sizing makes solar produce the daily outage energy of tiers 1 and 2, the battery hold one full outage block of tiers 1 and 2, and the generator back up tier 1 for cloudy days. Open source (MIT) on <a href="https://github.com/DesignMaster-Solutions/hospital-uptime">GitHub</a>, by Design Master Solutions LLC.</p>
+  </section>
+</main>
+
+<footer class="wrap foot">Built in 48 hours for the IAS Global Energy Hackathon by Anneru Solutions. Planning tool, not an engineering stamp: have a licensed installer verify surge loads, cabling and protection.</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "hospital-uptime",
+  "version": "0.1.0",
+  "description": "Size a solar + battery + backup generator system that keeps a hospital's critical loads on through 8-20 h daily grid outages. Anneru Global Energy Hackathon 2026.",
+  "type": "module",
+  "scripts": { "test": "node --test test/", "deploy": "wrangler deploy" },
+  "license": "MIT"
+}
