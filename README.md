@@ -8,7 +8,7 @@ Anneru Global Energy Hackathon 2026 · track: Digital Solutions, Apps & AI/ML To
 
 ## Demo video
 
-[docs/demo.mp4](docs/demo.mp4) (1:37): equipment by tier, the grid, the unsafe solar-only plan, auto-resize, tests. Rebuild with `python3 video/make.py` (real captures of the live app + `npm test` + narration).
+https://youtu.be/HwwU_R5O2pM (1:37, also [docs/demo.mp4](docs/demo.mp4)): equipment by tier, the grid, the unsafe solar-only plan, auto-resize, tests. Rebuild with `python3 video/make.py` (real captures of the live app + `npm test` + narration).
 
 ![The plan for the sample hospital: tiers 1-2 stay on through a 14 h outage](docs/plan.png)
 
