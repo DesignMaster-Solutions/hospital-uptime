@@ -1,4 +1,4 @@
-import { TIERS, SAMPLE_LOADS, DEFAULTS, tierPower, autoSize, simulate, economics } from './sizing.js';
+import { TIERS, SAMPLE_LOADS, DEFAULTS, tierPower, autoSize, simulate, economics, stressTest } from './sizing.js';
 
 const $ = (id) => document.getElementById(id);
 const ASSUMPTION_IDS = ['outageHours', 'outageStart', 'peakSunHours', 'dieselPrice', 'financeYears',
@@ -88,6 +88,19 @@ function render() {
   }).join('');
 
   $('chart').innerHTML = chart(sim, p);
+  $('stress').innerHTML = stress(stressTest(loads, s, a));
+}
+
+function stress(rows) {
+  const cell = (d) => {
+    const crit = d.unserved[1] + d.unserved[2];
+    const cls = d.unserved[1] > 0.01 ? 'bad' : crit > 0.01 ? 'warn' : 'ok';
+    const what = d.unserved[1] > 0.01 ? `life-critical short ${f1(d.unserved[1])} kWh`
+      : crit > 0.01 ? `essential short ${f1(d.unserved[2])} kWh` : 'tiers 1-2 on';
+    return `<td class="${cls}">${what}<small>${f1(d.litres)} L diesel · ${f1(d.unserved[3])} kWh comfort shed</small></td>`;
+  };
+  return '<thead><tr><th>Outage per day</th><th>Normal sun</th><th>Cloudy day</th></tr></thead><tbody>'
+    + rows.map((r) => `<tr><th>${r.outageHours} h</th>${cell(r.sunny)}${cell(r.cloudy)}</tr>`).join('') + '</tbody>';
 }
 
 function chart(sim, p) {

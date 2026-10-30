@@ -52,3 +52,8 @@ rect.outband { fill: var(--shed); }
 .foot { color: var(--muted); font-size: 13px; padding: 8px 16px 40px; }
 @media (max-width: 400px) { .card { padding: 14px; } button { padding: 8px 12px; } }
 @media print { .top { background: none; color: var(--ink); padding: 0; } .lede { color: var(--ink); } section:not(#plan), .row-actions, .foot { display: none; } .card { border: 0; } }
+.stress-wrap { overflow-x: auto; }
+.stress { width: 100%; border-collapse: collapse; font-size: 14px; }
+.stress th, .stress td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e3e7ef; vertical-align: top; }
+.stress td small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.stress td.ok { color: var(--ok); } .stress td.warn { color: #7a5600; background: #fff4d6; } .stress td.bad { color: #a12a2a; background: #fde8e8; }

@@ -129,3 +129,16 @@ export function economics(loads, size, sim, a = DEFAULTS) {
 }
 
 function ceil1(x) { return Math.ceil(x * 10) / 10; }
+
+// Same system, the brief's 8-20 h outage range, a normal day and a cloudy one (half the sun).
+export function stressTest(loads, size, a = DEFAULTS, outages = [8, 12, 16, 20]) {
+  const run = (o) => {
+    const s = simulate(loads, size, { ...a, ...o });
+    return { unserved: s.unserved, litres: s.genKwh * a.litresPerKwh, genHours: s.genHours };
+  };
+  return outages.map((h) => ({
+    outageHours: h,
+    sunny: run({ outageHours: h }),
+    cloudy: run({ outageHours: h, peakSunHours: a.peakSunHours / 2 }),
+  }));
+}

@@ -18,11 +18,12 @@ Hospital Uptime turns that problem into a plan a hospital administrator can take
 2. **Set the grid**: outage hours per day, when they start, peak sun hours, diesel price.
 3. **Get a system**: solar kWp, battery kWh and a backup generator, auto-sized or typed in.
 4. **See it run hour by hour**: which source carries the load each hour, battery charge, and what is shed. Tier 1 never goes dark; tier 3 is shed first and never burns diesel.
-5. **See the money**: up-front cost, monthly payment over the finance term, diesel saved per month, payback. Print the plan.
+5. **Stress-test it**: the same system across the brief's 8, 12, 16 and 20 h outages, on a normal day and a cloudy one (half the sun). Each cell says whether tiers 1-2 stay on, the diesel burned and the comfort load shed.
+6. **See the money**: up-front cost, monthly payment over the finance term, diesel saved per month, payback. Print the plan.
 
 ## Why tiers instead of one big generator
 
-Most facilities run every load on a diesel genset for every outage hour. The sample hospital in the app (10 lines of equipment, 14 h outage from 18:00) burns ~21 L/day that way. Sizing storage for only tiers 1-2, letting solar carry the day and keeping a small generator as the last line for life-critical loads, drops that to ~2.5 L/day in the simulation, with zero life-critical or essential energy unserved. The generator shrinks from "carries the hospital" to "4 kW that runs a few hours".
+Most facilities run every load on a diesel genset for every outage hour. The sample hospital in the app (10 lines of equipment, 14 h outage from 18:00) burns ~21 L/day that way. Sizing storage for only tiers 1-2, letting solar carry the day and keeping a small generator as the last line for life-critical loads, drops that to ~2.5 L/day in the simulation, with zero life-critical or essential energy unserved. The stress test keeps that sizing honest: from an 8 h to a 20 h outage, sunny or cloudy, tiers 1-2 never go dark and diesel stays at 0-4.4 L/day; only the comfort tier absorbs the bad days (up to 12 kWh shed on a 20 h cloudy day). The generator shrinks from "carries the hospital" to "4 kW that runs a few hours".
 
 ## Model
 
