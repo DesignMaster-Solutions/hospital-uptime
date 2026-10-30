@@ -6,3 +6,7 @@ video/*.png
 video/*.aiff
 video/*.mp4
 video/list.txt
+!video/stress.png
+!video/shed.png
+!video/money.png
+.wrangler/

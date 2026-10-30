@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Hospital Uptime · One-page summary</title>
+<style>
+@page { size: A4; margin: 14mm; }
+body { margin: 0; font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #14213d; }
+h1 { font-size: 22pt; margin: 0; } h2 { font-size: 12pt; margin: 12px 0 4px; }
+.k { color: #b37d00; font-weight: 600; margin: 0 0 2px; font-size: 9.5pt; }
+p, ul { margin: 0 0 6px; } ul { padding-left: 18px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
+.kpi { display: flex; gap: 10px; margin: 8px 0; } .kpi div { flex: 1; border: 1px solid #dfe3ea; border-radius: 6px; padding: 6px 8px; }
+.kpi b { display: block; font-size: 14pt; }
+img { width: 100%; border: 1px solid #dfe3ea; border-radius: 6px; }
+.foot { margin-top: 8px; font-size: 9pt; color: #5b6475; }
+</style></head><body>
+<p class="k">Anneru Global Energy Hackathon 2026 · Availability · Digital Solutions, Apps &amp; AI/ML Tools · Non-residential (healthcare)</p>
+<h1>Hospital Uptime</h1>
+<p><b>Tiered solar, battery and generator plans that keep a hospital's life-critical loads on through 8 to 20 hours of daily grid outage.</b></p>
+<div class="grid"><div>
+<h2>Problem</h2>
+<p>Nigerian hospitals lose grid power 8-20 hours a day. Most run every load on one diesel genset for every outage hour: high fuel cost, dependence on fuel supply, and a single point of failure for oxygen, vaccine fridges and ICU equipment.</p>
+<h2>Solution</h2>
+<ul>
+<li>Equipment is listed by tier: 1 life-critical (never shed), 2 essential, 3 comfort (shed first, never on diesel).</li>
+<li>The app sizes solar, battery and a small generator for tiers 1-2, simulates every hour, stress-tests 8-20 h outages on sunny and cloudy days, and shows cost, monthly payment, diesel saved and payback.</li>
+<li>The printed plan goes to an installer for quotes and to a lender for financing.</li>
+</ul>
+<h2>Results (sample hospital, 14 h outage)</h2>
+<div class="kpi"><div>Life-critical unserved<b>0 kWh</b></div><div>Diesel<b>21 → 2.5 L/day</b></div><div>Payback<b>4.3 years</b></div></div>
+<p>All 8 stress cases keep tiers 1-2 on; diesel 0-4.4 L/day; only comfort load is shed.</p>
+</div><div>
+<img src="fixed.png" alt="Plan for the sample hospital">
+<h2>Next 6-18 months</h2>
+<ul><li>Pilot with one hospital using real meter data.</li><li>Installer quotes in the cost model; lender-ready export.</li><li>Inputs (outage, sun, prices) make it portable to any region.</li></ul>
+<h2>Team and disclosure</h2>
+<p>Alan De Bortolo, founder, Design Master Solutions LLC (solo). Repository started Oct 29, 2026, 22:06 EDT. Built with Claude Code as coding assistant; no third-party code or datasets. Prices are editable planning assumptions, not quotes.</p>
+</div></div>
+<p class="foot">Live: hospital-uptime.designmaster.workers.dev · Code (MIT): github.com/DesignMaster-Solutions/hospital-uptime · Demo: see submission</p>
+</body></html>

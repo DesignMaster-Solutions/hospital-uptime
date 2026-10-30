@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Hospital Uptime · Pitch deck</title>
+<style>
+@page { size: 1280px 720px; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 22px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #14213d; }
+section { width: 1280px; height: 720px; padding: 64px 80px; position: relative; page-break-after: always; overflow: hidden; background: #f5f7fa; }
+section.dark { background: #14213d; color: #fff; }
+h1 { font-size: 64px; margin: 120px 0 12px; line-height: 1.05; }
+h2 { font-size: 40px; margin: 0 0 28px; }
+.k { color: #f2a900; font-weight: 600; font-size: 20px; margin: 0; }
+.muted { color: #5b6475; } .dark .muted { color: #c7cfdd; }
+.cols { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: start; }
+img { max-width: 100%; border: 1px solid #dfe3ea; border-radius: 8px; background: #fff; }
+ul { margin: 0; padding-left: 26px; } li { margin: 0 0 10px; }
+.big { font-size: 54px; font-weight: 700; color: #1d7a46; line-height: 1; }
+.kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 8px; }
+.kpi div { background: #fff; border: 1px solid #dfe3ea; border-radius: 10px; padding: 18px 20px; }
+.kpi b { display: block; font-size: 36px; }
+footer { position: absolute; left: 80px; right: 80px; bottom: 28px; font-size: 15px; color: #5b6475; display: flex; justify-content: space-between; }
+.dark footer { color: #9fb0c8; }
+</style></head><body>
+
+<section class="dark">
+  <p class="k">Anneru Global Energy Hackathon 2026 · Availability · Digital Solutions, Apps &amp; AI/ML Tools</p>
+  <h1>Hospital Uptime</h1>
+  <p style="font-size:30px;max-width:900px">Tiered solar, battery and generator plans that keep a hospital's life-critical loads on through 8 to 20 hours of daily grid outage.</p>
+  <p class="muted" style="margin-top:40px">hospital-uptime.designmaster.workers.dev · github.com/DesignMaster-Solutions/hospital-uptime (MIT)</p>
+  <footer><span>Alan De Bortolo · Design Master Solutions LLC</span><span>1 / 8</span></footer>
+</section>
+
+<section>
+  <h2>The problem</h2>
+  <div class="cols"><div>
+  <ul>
+    <li>Nigerian hospitals lose grid power <b>8 to 20 hours a day</b>.</li>
+    <li>The default answer is one big diesel genset carrying <b>every</b> load, every outage hour.</li>
+    <li>That costs fuel every day, depends on fuel supply, and when it fails, oxygen, vaccine fridges and ICU monitors fail with it.</li>
+    <li>Administrators have no simple way to size a safer system or defend it to a lender.</li>
+  </ul></div>
+  <div><p class="muted">The brief</p><p style="font-size:24px">"Design a scalable, low-maintenance energy system that guarantees uninterrupted 24-hour power for Nigerian hospitals experiencing 8–20 hours of daily grid outages."</p></div></div>
+  <footer><span>Hospital Uptime</span><span>2 / 8</span></footer>
+</section>
+
+<section>
+  <h2>The idea: power by tier, not by building</h2>
+  <div class="cols"><div>
+  <ul>
+    <li><b>Tier 1, life-critical</b>: oxygen, vaccine and blood fridges, ICU, theatre. Never shed; the generator is the last line.</li>
+    <li><b>Tier 2, essential</b>: lighting, lab, water pump, records.</li>
+    <li><b>Tier 3, comfort</b>: fans, AC. Shed first, never on diesel.</li>
+    <li>Solar carries the day, the battery carries the night, a <b>small</b> generator only backs tiers 1-2.</li>
+  </ul></div>
+  <div><img src="shed.png" alt="Load-shedding order from the live app"></div></div>
+  <footer><span>Hospital Uptime</span><span>3 / 8</span></footer>
+</section>
+
+<section>
+  <h2>The product</h2>
+  <div class="cols"><div>
+  <ol style="padding-left:26px">
+    <li>List the equipment and its tier.</li>
+    <li>Set the grid: outage hours, start time, sun, diesel price.</li>
+    <li>Auto-size solar, battery and generator.</li>
+    <li>See every hour: which source carries each tier, what is shed.</li>
+    <li>Stress-test 8-20 h outages, sunny and cloudy.</li>
+    <li>See the money and print the plan.</li>
+  </ol></div>
+  <div><img src="fixed.png" alt="Plan for the sample hospital"></div></div>
+  <footer><span>Hospital Uptime</span><span>4 / 8</span></footer>
+</section>
+
+<section>
+  <h2>Results for the sample hospital (14 h outage)</h2>
+  <div class="kpi">
+    <div><span class="muted">Life-critical energy unserved</span><b>0 kWh</b></div>
+    <div><span class="muted">Diesel</span><b>21 → 2.5 L/day</b></div>
+    <div><span class="muted">Simple payback</span><b>4.3 years</b></div>
+  </div>
+  <p style="margin-top:30px">Stress test of the same system: tiers 1-2 stay on in all 8 cases (8, 12, 16, 20 h outage × normal / cloudy day). Diesel 0-4.4 L/day; only comfort load is shed (up to 12 kWh on a 20 h cloudy day).</p>
+  <img src="stress.png" alt="Stress test table" style="width:760px">
+  <footer><span>Hospital Uptime</span><span>5 / 8</span></footer>
+</section>
+
+<section>
+  <h2>How it works and how it is checked</h2>
+  <div class="cols"><div>
+  <ul>
+    <li>Load per line = W × h / 24, grouped by tier.</li>
+    <li>Outage = one continuous block per day (worst case for storage).</li>
+    <li>Solar = half-sine 06:00-18:00 × 0.75 performance ratio.</li>
+    <li>Dispatch per tier: solar → battery → generator (tiers 1-2 only).</li>
+    <li>3 simulated days, the 3rd reported.</li>
+  </ul></div><div>
+  <ul>
+    <li>7 automated tests: auto-sized system never drops a life-critical load; comfort is shed first and never gets diesel; hybrid always burns less diesel than genset-only; stress range covered.</li>
+    <li>Prices are editable planning assumptions, not quotes. Surge, cabling and protection stay with a licensed installer.</li>
+  </ul></div></div>
+  <footer><span>Hospital Uptime</span><span>6 / 8</span></footer>
+</section>
+
+<section>
+  <h2>Path to impact, 6 to 18 months</h2>
+  <ul>
+    <li><b>Pilot</b> with one hospital: import real meter data instead of a typed equipment list.</li>
+    <li><b>Installer quotes</b> plugged into the cost model; one plan, comparable bids.</li>
+    <li><b>Lender-ready export</b> (monthly payment vs. diesel saved) for PAYG and asset finance.</li>
+    <li><b>Adapts anywhere</b>: outage pattern, sun, tariffs and prices are inputs, so the same tool serves clinics in Africa, the Americas and Asia.</li>
+    <li>Free for hospitals; revenue from installers and lenders who receive qualified, pre-sized projects.</li>
+  </ul>
+  <footer><span>Hospital Uptime</span><span>7 / 8</span></footer>
+</section>
+
+<section class="dark">
+  <h2>Team and disclosure</h2>
+  <div class="cols" style="grid-template-columns:220px 1fr"><img src="alan.jpg" alt="Alan De Bortolo" style="border:0">
+  <div><p style="font-size:28px;margin:0"><b>Alan De Bortolo</b>, founder, Design Master Solutions LLC (solo entry)</p>
+  <p class="muted">Software for clinics and small businesses since 2004.</p>
+  <p>Repository started Oct 29, 2026, 22:06 EDT; everything in it was built for this hackathon. AI: Claude Code as coding assistant. No third-party code or datasets; sample hospital and prices are illustrative assumptions.</p></div></div>
+  <footer><span>hospital-uptime.designmaster.workers.dev</span><span>8 / 8</span></footer>
+</section>
+</body></html>
