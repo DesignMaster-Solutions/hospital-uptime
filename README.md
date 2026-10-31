@@ -8,7 +8,11 @@ Anneru Global Energy Hackathon 2026 · track: Digital Solutions, Apps & AI/ML To
 
 ## Demo video
 
-https://youtu.be/HwwU_R5O2pM (1:37, also [docs/demo.mp4](docs/demo.mp4)): equipment by tier, the grid, the unsafe solar-only plan, auto-resize, tests. Rebuild with `python3 video/make.py` (real captures of the live app + `npm test` + narration).
+[Current submission demo (4:23)](https://youtu.be/Y5FrlzyPXL0), also available as [docs/demo.mp4](docs/demo.mp4). This replaces the early 1:37 preview: the submission form requires a 3–5 minute demo. The current video covers the team introduction, equipment tiers, outage simulation, stress tests, financing, model limits and next steps. Narration is synthetic (macOS), not a personal voice recording.
+
+**Judging materials:** [pitch deck PDF](docs/HospitalUptime-deck.pdf) · [one-page summary PDF](docs/HospitalUptime-summary.pdf) · [submission packet and disclosure](docs/submission.md).
+
+Build source: `video/make.py` (real app captures and locally generated narration).
 
 ![The plan for the sample hospital: tiers 1-2 stay on through a 14 h outage](docs/plan.png)
 
